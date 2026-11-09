@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Beer Studios — Indie Game Dev</title>
-  <meta name="description" content="Beer Studios is an indie game studio by Beerkanwar Singh. Snake is live on Google Play." />
+  <title>Beer Studios — Central Hub &amp; Indie Games</title>
+  <meta name="description" content="Central entry point for Beer Studios by Beerkanwar Singh: indie game releases, engineering portfolio, freelance services, and official app policies." />
   <link rel="canonical" href="https://beerstudios.org/" />
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="icon" href="./favicon.ico" sizes="32x32" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Beer Studios — Indie Game Dev" />
-  <meta property="og:description" content="Indie game studio by Beerkanwar Singh. Snake is live on Google Play." />
+  <meta property="og:title" content="Beer Studios — Central Hub &amp; Indie Games" />
+  <meta property="og:description" content="Indie game studio and engineering ecosystem by Beerkanwar Singh: portfolio, freelance contracts, game releases, and policies." />
   <meta property="og:url" content="https://beerstudios.org/" />
   <meta property="og:site_name" content="Beer Studios" />
   <meta name="theme-color" content="#14172E" />
@@ -18,347 +23,199 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ── Reset & Tokens ── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg:       #0F1224;
-      --bg-deep:  #0A0C1A;
-      --panel:    #181C36;
-      --border:   #2A3060;
-      --text:     #ECEEFA;
-      --muted:    #9AA3C7;
-      --yellow:   #FFD23F;
-      --cyan:     #4CC9F0;
-      --coral:    #FF5D73;
-      --font-display: 'Silkscreen', monospace;
-      --font-body: 'Inter', system-ui, sans-serif;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      min-height: 100vh;
-    }
-    a { color: var(--yellow); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* ── Starfield Background ── */
-    .starfield {
-      position: fixed; inset: 0; z-index: -1; overflow: hidden;
-    }
-    .starfield::before, .starfield::after {
-      content: ''; position: absolute; inset: 0;
-      background-image:
-        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 50%, transparent 50%),
-        radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.4) 50%, transparent 50%),
-        radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.5) 50%, transparent 50%),
-        radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.3) 50%, transparent 50%),
-        radial-gradient(1px 1px at 25% 75%, rgba(255,255,255,0.5) 50%, transparent 50%),
-        radial-gradient(1.5px 1.5px at 55% 15%, rgba(255,210,63,0.4) 50%, transparent 50%),
-        radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.4) 50%, transparent 50%);
-      background-size: 300px 300px;
-      animation: twinkle 8s ease-in-out infinite alternate;
-    }
-    .starfield::after {
-      background-size: 500px 500px;
-      animation-duration: 12s; animation-direction: alternate-reverse;
-    }
-    @keyframes twinkle { from { opacity: 0.5; } to { opacity: 1; } }
-
-    /* ── Layout ── */
-    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
-
-    /* ── Header ── */
-    .site-header {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .header-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .logo {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      color: var(--yellow);
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .logo:hover { text-decoration: none; }
-    .header-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .header-nav a { color: var(--muted); font-size: 0.9rem; }
-    .header-nav a:hover { color: var(--yellow); text-decoration: none; }
-
-    /* ── Hero ── */
-    .hero {
-      text-align: center;
-      padding: 5rem 0 3rem;
-    }
-    .hero-badge {
-      display: inline-block;
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      color: var(--bg);
-      background: var(--yellow);
-      padding: 0.25rem 0.75rem;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.05em;
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
-      color: var(--yellow);
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-    .hero-tagline {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 520px;
-      margin: 0 auto 2rem;
-    }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--yellow);
-      color: var(--bg-deep);
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      padding: 0.75rem 1.75rem;
-      border: none; cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .hero-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(255, 210, 63, 0.3);
-      text-decoration: none;
-    }
-
-    /* ── Games Grid ── */
-    .games { padding: 3rem 0 4rem; }
-    .section-label {
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      color: var(--yellow);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      color: var(--text);
-      margin-bottom: 2rem;
-    }
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .game-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 1.75rem;
-      display: flex; flex-direction: column; gap: 0.75rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .game-card:hover {
-      border-color: var(--yellow);
-      transform: translateY(-3px);
-    }
-    .game-card-status {
-      font-family: var(--font-display);
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      padding: 0.2rem 0.5rem;
-      display: inline-block;
-      width: fit-content;
-    }
-    .status-shipped { background: #12805A; color: #fff; }
-    .status-playable { background: #6C3FD1; color: #fff; }
-    .status-wip { background: var(--border); color: var(--muted); }
-    .game-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: var(--text);
-    }
-    .game-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      flex: 1;
-    }
-    .game-card-tech {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      margin-top: 0.25rem;
-    }
-    .tech-chip {
-      font-size: 0.7rem;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 0.15rem 0.5rem;
-    }
-    .game-card-links {
-      display: flex; gap: 0.75rem; flex-wrap: wrap;
-      margin-top: 0.5rem;
-    }
-    .game-card-links a {
-      font-size: 0.8rem;
-      color: var(--yellow);
-      border: 1px solid var(--yellow);
-      padding: 0.35rem 0.75rem;
-      font-family: var(--font-display);
-      transition: background 0.15s;
-    }
-    .game-card-links a:hover {
-      background: var(--yellow);
-      color: var(--bg-deep);
-      text-decoration: none;
-    }
-
-    /* ── Links Section ── */
-    .links-section {
-      padding: 2rem 0 4rem;
-      text-align: center;
-    }
-    .links-row {
-      display: flex; justify-content: center;
-      gap: 1.5rem; flex-wrap: wrap;
-    }
-    .links-row a {
-      color: var(--muted);
-      font-size: 0.9rem;
-      border: 1px solid var(--border);
-      padding: 0.5rem 1.25rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .links-row a:hover {
-      border-color: var(--yellow);
-      color: var(--yellow);
-      text-decoration: none;
-    }
-
-    /* ── Footer ── */
-    .site-footer {
-      border-top: 1px solid var(--border);
-      padding: 1.5rem 0;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-    .site-footer a { color: var(--muted); }
-    .site-footer a:hover { color: var(--yellow); }
-  </style>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <div class="starfield" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">Skip to Content</a>
 
   <!-- Header -->
-  <header class="site-header">
+  <header class="site-header" id="top">
     <div class="container">
       <div class="header-inner">
-        <a href="/" class="logo">⬛ BEER STUDIOS</a>
-        <nav class="header-nav">
+        <a href="./" class="logo" aria-current="page">
+          <img src="./favicon.svg" alt="" width="24" height="24" />
+          <span>Beer Studios</span>
+        </a>
+        <nav class="header-nav" aria-label="Primary Hub Navigation">
+          <a href="#destinations">Destinations</a>
           <a href="#games">Games</a>
-          <a href="https://portfolio.beerstudios.org">Portfolio</a>
-          <a href="https://github.com/BeerStudiosOrg">GitHub</a>
+          <a href="https://portfolio.beerstudios.org/">Portfolio</a>
+          <a href="https://portfolio.beerstudios.org/freelance/">Freelance</a>
+          <a href="#connect">Contact</a>
+          <a href="./PrivacyPolicy/Snake/">Privacy</a>
         </nav>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge">INDIE GAME STUDIO</div>
-      <h1>Beer Studios</h1>
-      <p class="hero-tagline">
-        We build games — from physics-driven arcade loops to multiplayer netcode.
-        Designed and engineered by Beerkanwar Singh.
-      </p>
-      <a href="#games" class="hero-cta">▶ VIEW GAMES</a>
-    </div>
-  </section>
-
-  <!-- Games -->
-  <section class="games" id="games">
-    <div class="container">
-      <div class="section-label">// RELEASED &amp; IN DEVELOPMENT</div>
-      <h2 class="section-title">Our Games</h2>
-
-      <div class="games-grid">
-
-        <!-- Snake -->
-        <div class="game-card">
-          <span class="game-card-status status-shipped">SHIPPED</span>
-          <h3>Snake</h3>
-          <p>A commercially shipped Snake game with O(1) data structures, adaptive camera framing, and cross-platform input. Live on Google Play.</p>
-          <div class="game-card-tech">
-            <span class="tech-chip">Unity</span>
-            <span class="tech-chip">C#</span>
-            <span class="tech-chip">Android</span>
-          </div>
-          <div class="game-card-links">
-            <a href="https://play.google.com/store/apps/details?id=com.BeerStudios.Snake">Google Play</a>
-            <a href="https://portfolio.beerstudios.org/projects/snake/">Case File</a>
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero" aria-label="Studio Introduction">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-badge">Beer Studios &middot; Central Hub</div>
+          <h1>Beer Studios</h1>
+          <p class="hero-tagline">
+            Indie game studio and engineering workspace of Beerkanwar Singh.
+            Start here to explore personal engineering work, hire for scoped Unity contracts, or launch our shipped games and policies.
+          </p>
+          <div class="hero-actions">
+            <a href="#destinations" class="btn btn-primary">&#9654; Explore Destinations</a>
+            <a href="#games" class="btn btn-secondary">View Studio Games</a>
+            <a href="https://portfolio.beerstudios.org/" class="btn btn-secondary">Personal Portfolio &rarr;</a>
           </div>
         </div>
-
-        <!-- Bomb Massacre -->
-        <div class="game-card">
-          <span class="game-card-status status-playable">PLAYABLE</span>
-          <h3>Bomb Massacre</h3>
-          <p>A GMTK Game Jam 2D platformer where carrying a bomb longer makes its terrain-carving blast radius grow. Play it in browser.</p>
-          <div class="game-card-tech">
-            <span class="tech-chip">Unity 6</span>
-            <span class="tech-chip">C#</span>
-            <span class="tech-chip">WebGL</span>
-          </div>
-          <div class="game-card-links">
-            <a href="https://beer-23.itch.io/bomb-massacre">Play on itch.io</a>
-            <a href="https://portfolio.beerstudios.org/projects/bomb-massacre/">Case File</a>
-          </div>
-        </div>
-
-        <!-- Siege Front -->
-        <div class="game-card">
-          <span class="game-card-status status-wip">IN DEVELOPMENT</span>
-          <h3>Siege Front</h3>
-          <p>A tactical 2D single-lane tug-of-war auto-battler. Deploy counter-troops, manage battle energy, and break the enemy cave.</p>
-          <div class="game-card-tech">
-            <span class="tech-chip">Unity</span>
-            <span class="tech-chip">C#</span>
-            <span class="tech-chip">Mobile</span>
-          </div>
-          <div class="game-card-links">
-            <a href="https://portfolio.beerstudios.org">Portfolio</a>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Links -->
-  <section class="links-section">
-    <div class="container">
-      <div class="links-row">
-        <a href="https://portfolio.beerstudios.org">Full Portfolio &#8594;</a>
-        <a href="https://github.com/Beerkanwar">GitHub &#8594;</a>
-        <a href="https://www.linkedin.com/in/beerkanwar-singh-627836285/">LinkedIn &#8594;</a>
-        <a href="https://beer-23.itch.io">itch.io &#8594;</a>
+    <!-- Central Portal Destinations -->
+    <section class="hub-section" id="destinations" aria-label="Ecosystem Destinations">
+      <div class="container">
+        <div class="section-label">// ECOSYSTEM DIRECTORY</div>
+        <h2 class="section-title">Where Would You Like to Go?</h2>
+        <p class="section-desc">
+          Dedicated destinations across the Beer Studios domain architecture — separated clearly between personal engineering background, client services, and studio products.
+        </p>
+
+        <div class="portal-grid">
+          <!-- Portfolio -->
+          <article class="portal-card portal-card--portfolio">
+            <div class="portal-eyebrow">portfolio.beerstudios.org</div>
+            <h3>Personal Portfolio</h3>
+            <p>
+              Deep-dive engineering case files, Unity &amp; backend architecture breakdowns, internship quests, technical skills, and a printable 60-second Recruiter Mode resume.
+            </p>
+            <div class="portal-actions">
+              <a href="https://portfolio.beerstudios.org/" class="btn btn-primary btn-sm">Open Portfolio &rarr;</a>
+              <a href="https://portfolio.beerstudios.org/recruiter/" class="btn btn-secondary btn-sm">Recruiter View</a>
+            </div>
+          </article>
+
+          <!-- Freelance -->
+          <article class="portal-card portal-card--freelance">
+            <div class="portal-eyebrow">portfolio.beerstudios.org/freelance/</div>
+            <h3>Freelance &amp; Contracts</h3>
+            <p>
+              Scoped Unity (C#) gameplay modules, custom physics &amp; vector math kinematics, NGO multiplayer netcode, ML-Agents setups, and GC/framerate optimization.
+            </p>
+            <div class="portal-actions">
+              <a href="https://portfolio.beerstudios.org/freelance/" class="btn btn-primary btn-sm">View Services &rarr;</a>
+              <a href="mailto:contact@beerstudios.org?subject=Freelance%20Inquiry%20-%20Beer%20Studios" class="btn btn-secondary btn-sm">Email Brief</a>
+            </div>
+          </article>
+
+          <!-- Studio Releases & Docs -->
+          <article class="portal-card portal-card--studio">
+            <div class="portal-eyebrow">beerstudios.org</div>
+            <h3>Studio Releases &amp; Docs</h3>
+            <p>
+              Released Google Play titles, playable itch.io jam builds, upcoming studio experiments, and official app privacy documentation hosted directly at the root.
+            </p>
+            <div class="portal-actions">
+              <a href="#games" class="btn btn-primary btn-sm">Browse Games &darr;</a>
+              <a href="./PrivacyPolicy/Snake/" class="btn btn-secondary btn-sm">Snake Policy</a>
+            </div>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Games Showcase -->
+    <section class="hub-section" id="games" aria-label="Studio Games">
+      <div class="container">
+        <div class="section-label">// RELEASED &amp; IN DEVELOPMENT</div>
+        <h2 class="section-title">Studio Games</h2>
+        <p class="section-desc">
+          Games designed and engineered under Beer Studios, with full architectural write-ups hosted in the personal portfolio.
+        </p>
+
+        <div class="games-grid">
+          <!-- Snake -->
+          <article class="game-card">
+            <span class="game-card-status status-shipped">Shipped</span>
+            <h3>Snake</h3>
+            <p>A commercially shipped Snake game with O(1) data structures, adaptive camera framing, and cross-platform input. Live on Google Play.</p>
+            <div class="game-card-tech">
+              <span class="tech-chip">Unity</span>
+              <span class="tech-chip">C#</span>
+              <span class="tech-chip">Android</span>
+            </div>
+            <div class="game-card-links">
+              <a href="https://play.google.com/store/apps/details?id=com.BeerStudios.Snake" class="card-link" target="_blank" rel="noopener noreferrer">Google Play</a>
+              <a href="https://portfolio.beerstudios.org/projects/snake/" class="card-link card-link--secondary">Case File</a>
+              <a href="./PrivacyPolicy/Snake/" class="card-link card-link--secondary">Privacy Policy</a>
+            </div>
+          </article>
+
+          <!-- Bomb Massacre -->
+          <article class="game-card">
+            <span class="game-card-status status-playable">Playable</span>
+            <h3>Bomb Massacre</h3>
+            <p>A GMTK Game Jam 2D platformer where carrying a bomb longer makes its terrain-carving blast radius grow. Play it directly in your browser.</p>
+            <div class="game-card-tech">
+              <span class="tech-chip">Unity 6</span>
+              <span class="tech-chip">C#</span>
+              <span class="tech-chip">WebGL</span>
+            </div>
+            <div class="game-card-links">
+              <a href="https://beer-23.itch.io/bomb-massacre" class="card-link" target="_blank" rel="noopener noreferrer">Play on itch.io</a>
+              <a href="https://portfolio.beerstudios.org/projects/bomb-massacre/" class="card-link card-link--secondary">Case File</a>
+            </div>
+          </article>
+
+          <!-- Siege Front -->
+          <article class="game-card">
+            <span class="game-card-status status-wip">In Development</span>
+            <h3>Siege Front</h3>
+            <p>A tactical 2D single-lane tug-of-war auto-battler. Deploy counter-troops, manage battle energy, and break the enemy cave.</p>
+            <div class="game-card-tech">
+              <span class="tech-chip">Unity</span>
+              <span class="tech-chip">C#</span>
+              <span class="tech-chip">Mobile</span>
+            </div>
+            <div class="game-card-links">
+              <a href="https://portfolio.beerstudios.org/" class="card-link card-link--secondary">View on Portfolio</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Channels & Legal Links -->
+    <section class="hub-section" id="connect" aria-label="External Channels and Legal">
+      <div class="container">
+        <div class="section-label">// CHANNELS &amp; LEGAL</div>
+        <h2 class="section-title">Connect &amp; Profiles</h2>
+        <p class="section-desc">
+          Studio organizations, source repositories, playable storefronts, and official studio contact.
+        </p>
+
+        <div class="links-row">
+          <a href="https://github.com/BeerStudiosOrg" class="channel-link" target="_blank" rel="noopener noreferrer">GitHub Org &rarr;</a>
+          <a href="https://github.com/Beerkanwar" class="channel-link" target="_blank" rel="noopener noreferrer">Personal GitHub &rarr;</a>
+          <a href="https://www.linkedin.com/in/beerkanwar-singh-627836285/" class="channel-link" target="_blank" rel="noopener noreferrer">LinkedIn &rarr;</a>
+          <a href="https://beer-23.itch.io" class="channel-link" target="_blank" rel="noopener noreferrer">itch.io &rarr;</a>
+          <a href="mailto:contact@beerstudios.org" class="channel-link">contact@beerstudios.org</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 Beer Studios &middot; Built by <a href="https://portfolio.beerstudios.org">Beerkanwar Singh</a></p>
-      <p style="margin-top: 0.5rem;">
-        <a href="/PrivacyPolicy/Snake/">Privacy Policy — Snake</a>
-      </p>
+      <div class="footer-inner">
+        <p>&copy; 2026 Beer Studios &middot; Built by <a href="https://portfolio.beerstudios.org/">Beerkanwar Singh</a></p>
+        <div class="footer-links">
+          <a href="https://portfolio.beerstudios.org/">Portfolio</a>
+          <a href="https://portfolio.beerstudios.org/freelance/">Freelance</a>
+          <a href="./PrivacyPolicy/Snake/">Privacy Policy — Snake</a>
+          <a href="mailto:contact@beerstudios.org">Email</a>
+        </div>
+      </div>
     </div>
   </footer>
 </body>
